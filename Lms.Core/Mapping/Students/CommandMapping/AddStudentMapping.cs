@@ -15,7 +15,7 @@ namespace Lms.Core.Mapping.Students
         {
             CreateMap<AddStudentCommand, Student>()
                 .ForMember(dest => dest.DID, opt => opt
-                .MapFrom(src => src.DepartmentId));
+                .MapFrom(src => src.DepartmementId));
             
         }
     }

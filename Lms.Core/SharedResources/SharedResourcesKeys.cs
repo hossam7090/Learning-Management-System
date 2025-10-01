@@ -19,6 +19,7 @@ namespace Lms.Core.Resources
         public const string name4Size = "name4Size";
         public const string nameExist = "nameExist";
         public const string nameRequired = "nameRequired";
+        public const string IsNotExist = "IsNotExist";
 
     }
 }

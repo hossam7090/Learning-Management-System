@@ -16,6 +16,6 @@ namespace Lms.Core.Features.Students.Commands.Models
         [Required]
         public string Address { get; set; }
         public string? Phone { get; set; }
-        public string? DepartmentId { get; set; }
+        public int DepartmementId { get; set; }
     }
 }

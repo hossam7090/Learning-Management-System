@@ -36,6 +36,12 @@ namespace Lms.Services.implementations
                                                  .Include(x => x.Instructors)
                                                  .Include(x => x.Instructor).FirstOrDefaultAsync();
         }
+
+        public async Task<bool> IsDepartmentIdExist(int departmentId)
+        {
+            return await _departmentRepository.GetTableNoTracking().AnyAsync(x => x.DID.Equals(departmentId));
+        }
+
         #endregion
     }
 }

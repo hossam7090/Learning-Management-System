@@ -150,4 +150,7 @@
   <data name="nameExist" xml:space="preserve">
     <value>الاسم موجود بالفعل</value>
   </data>
+  <data name="IsNotExist" xml:space="preserve">
+    <value>القسم غير موجود</value>
+  </data>
 </root>

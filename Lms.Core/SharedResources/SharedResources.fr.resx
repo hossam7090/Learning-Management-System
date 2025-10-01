@@ -150,4 +150,7 @@
   <data name="nameExist" xml:space="preserve">
     <value>Le nom existe déjà</value>
   </data>
+  <data name="IsNotExist" xml:space="preserve">
+    <value>Department Is Not Exist</value>
+  </data>
 </root>
