@@ -1,4 +1,6 @@
 ﻿using Lms.Data.Entities;
+using Lms.Data.Entities.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Lms.Infrastructure.Data
 {
-    public class ApplicationDbContext :DbContext
+    public class ApplicationDbContext : IdentityDbContext<User>
     {
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)
