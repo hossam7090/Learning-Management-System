@@ -18,6 +18,7 @@ namespace Lms.Infrastructure.Data
         {
             
         }
+        DbSet<User> users {  get; set; }
         public DbSet<Student> students { get; set; }
         DbSet<Department> departments { get; set; }
         DbSet<Subject> subjects { get; set; }

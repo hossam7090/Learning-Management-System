@@ -25,6 +25,12 @@ namespace Lms.Data.AppMetaData
 
 
         }
+        public static class ApplicationUserRouting
+        {
+            public const string prefix = Rule + "Auth";
+            public const string Create = prefix + "/Create";
+
+        }
         public static class DepartmentRouting
         {
             public const string prefix = Rule + "Department";
