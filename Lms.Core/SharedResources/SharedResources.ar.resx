@@ -153,4 +153,13 @@
   <data name="IsNotExist" xml:space="preserve">
     <value>القسم غير موجود</value>
   </data>
+  <data name="passwordMustMatch" xml:space="preserve">
+    <value>يجب ان يتطابق مع الباسورد</value>
+  </data>
+  <data name="emailExist" xml:space="preserve">
+    <value>هذا الايميل موجود بالفعل</value>
+  </data>
+  <data name="userNameExist" xml:space="preserve">
+    <value>هذا الاسم مستخدم بالفعل</value>
+  </data>
 </root>

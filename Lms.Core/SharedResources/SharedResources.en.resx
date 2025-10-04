@@ -153,4 +153,13 @@
   <data name="IsNotExist" xml:space="preserve">
     <value>Department Is Not Exist</value>
   </data>
+  <data name="passwordMustMatch" xml:space="preserve">
+    <value>confirm password it must match password</value>
+  </data>
+  <data name="emailExist" xml:space="preserve">
+    <value>this Email is already exist</value>
+  </data>
+  <data name="userNameExist" xml:space="preserve">
+    <value>this username is already exist</value>
+  </data>
 </root>

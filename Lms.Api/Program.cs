@@ -10,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Scalar.AspNetCore;
-using SchoolProject.Infrustructure;
 using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,34 +23,15 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<ApplicationDbContext>(option =>
         option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddIdentity<User, IdentityRole>(option =>
-{
-    // Password settings.
-    option.Password.RequireDigit = true;
-    option.Password.RequireLowercase = true;
-    option.Password.RequireNonAlphanumeric = true;
-    option.Password.RequireUppercase = true;
-    option.Password.RequiredLength = 6;
-    option.Password.RequiredUniqueChars = 1;
 
-    // Lockout settings.
-    option.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-    option.Lockout.MaxFailedAccessAttempts = 5;
-    option.Lockout.AllowedForNewUsers = true;
 
-    // User settings.
-    option.User.AllowedUserNameCharacters =
-    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-    option.User.RequireUniqueEmail = true;
-    option.SignIn.RequireConfirmedEmail = true;
-
-}).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
 
 #region Dependency Injection
 builder.Services.AddInfrastructureDependencies()
                 .AddServicesDependencies()
-                .AddCoreDependencies();
+                .AddCoreDependencies()
+                .AddServiceRegisteration();
 #endregion
 
 #region Localization

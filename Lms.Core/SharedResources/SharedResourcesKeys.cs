@@ -20,6 +20,9 @@ namespace Lms.Core.Resources
         public const string nameExist = "nameExist";
         public const string nameRequired = "nameRequired";
         public const string IsNotExist = "IsNotExist";
+        public const string passwordMustMatch = "passwordMustMatch";
+        public const string emailExist = "emailExist";
+        public const string userNameExist = "userNameExist";
 
     }
 }
