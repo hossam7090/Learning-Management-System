@@ -12,6 +12,8 @@ namespace Lms.Core.Mapping.Users
         public UserProfile()
         {
             CreatUserMapping();
+            GetPaginationUserMapping();
+            GetUserByIdMapping();
         }
-}
+    }
 }
