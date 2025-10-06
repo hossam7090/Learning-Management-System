@@ -29,6 +29,8 @@ namespace Lms.Data.AppMetaData
         {
             public const string prefix = Rule + "Auth";
             public const string Create = prefix + "/Create";
+            public const string Paginated = prefix + "/Paginated";
+            public const string GetById = prefix + "/Id";
 
         }
         public static class DepartmentRouting
