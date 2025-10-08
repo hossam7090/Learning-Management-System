@@ -17,6 +17,7 @@ namespace Lms.Core.Features.Users.Commands.Handler
     public class UserCommandHandler : ResponseHandler
                                        , IRequestHandler<AddUserCommand, Response<string>>
                                        , IRequestHandler<EditUserCommand, Response<string>>
+                                       , IRequestHandler<DeleteUserCommand, Response<string>>
     {
         private readonly UserManager<User> _userManager;
         private readonly IStringLocalizer<SharedResources> _localizer;
@@ -48,6 +49,16 @@ namespace Lms.Core.Features.Users.Commands.Handler
             var result = await _userManager.UpdateAsync(newUser);
             if(!result.Succeeded) return BadRequest<string>();
             return Success((string)_localizer[SharedResourcesKeys.Updated]);
+        }
+
+        public async Task<Response<string>> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
+        {
+            var User = await _userManager.FindByIdAsync(request.Id.ToString());
+            if (User == null) return NotFound<string>();
+            var result = await _userManager.DeleteAsync(User);
+            if(!result.Succeeded) return BadRequest<string>();
+            return Deleted<string>();
+
         }
     }
 }
