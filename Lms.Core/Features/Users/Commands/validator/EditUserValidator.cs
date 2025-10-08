@@ -4,6 +4,7 @@ using Lms.Core.Resources;
 using Lms.Data.Entities.Identity;
 using Lms.Services.Abstracts;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
@@ -41,12 +42,12 @@ namespace Lms.Core.Features.Users.Commands.validator
         public async Task ApplyCustomValidationRules()
         {
             RuleFor(x => x.Email)
-                .MustAsync(async (email, cancellation) =>
-                    await _userManager.FindByEmailAsync(email) == null)
+                .MustAsync(async (Models, Key, CancellationToken) =>
+                    await _userManager.Users.FirstOrDefaultAsync(x => x.Email == Key !& x.Id == Models.Id.ToString()) == null) 
                 .WithMessage(_localizer[SharedResourcesKeys.emailExist]);
             RuleFor(x => x.UserName)
-                .MustAsync(async (userName, cancellation) =>
-                    await _userManager.FindByNameAsync(userName) == null)
+                .MustAsync(async (Models, Key, CancellationToken) =>
+                    await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == Key! & x.Id == Models.Id.ToString()) == null)
                 .WithMessage(_localizer[SharedResourcesKeys.userNameExist]);
 
         }

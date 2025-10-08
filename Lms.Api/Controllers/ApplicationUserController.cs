@@ -43,5 +43,17 @@ namespace Lms.Api.Controllers
             var response = await _mediatR.Send(command);
             return NewResult(response);
         }
+        [HttpDelete(Router.ApplicationUserRouting.Delete)]
+        public async Task<IActionResult> Delete(Guid Id)
+        {
+            var response = await _mediatR.Send(new DeleteUserCommand(Id));
+            return NewResult(response);
+        }
+        [HttpPut(Router.ApplicationUserRouting.ChangePassword)]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangeUserPasswordCommand command)
+        {
+            var response = await _mediatR.Send(command);
+            return NewResult(response);
+        }
     }
 }
