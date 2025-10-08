@@ -14,6 +14,7 @@ namespace Lms.Core.Mapping.Users
             CreatUserMapping();
             GetPaginationUserMapping();
             GetUserByIdMapping();
+            EditUserMapping();
         }
     }
 }

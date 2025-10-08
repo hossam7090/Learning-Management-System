@@ -162,4 +162,7 @@
   <data name="userNameExist" xml:space="preserve">
     <value>هذا الاسم مستخدم بالفعل</value>
   </data>
+  <data name="Updated" xml:space="preserve">
+    <value>تم التحديث بنجاح</value>
+  </data>
 </root>
