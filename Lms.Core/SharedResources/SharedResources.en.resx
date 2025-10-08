@@ -162,4 +162,7 @@
   <data name="userNameExist" xml:space="preserve">
     <value>this username is already exist</value>
   </data>
+  <data name="Updated" xml:space="preserve">
+    <value>Updated Successfully</value>
+  </data>
 </root>

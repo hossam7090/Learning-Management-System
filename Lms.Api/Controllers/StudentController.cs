@@ -34,12 +34,13 @@ namespace Lms.Api.Controllers
             return NewResult(response);
         }
         [HttpPost(Router.StudentRouting.Create)]
+
         public async Task<IActionResult> Create([FromBody] AddStudentCommand command )
         {
             var response = await _mediatR.Send(command);
             return NewResult(response);
         }
-        [HttpPost(Router.StudentRouting.Edit)]
+        [HttpPut(Router.StudentRouting.Edit)]
         public async Task<IActionResult> Edit([FromBody] EditStudentCommand command)
         {
             var response = await _mediatR.Send(command);

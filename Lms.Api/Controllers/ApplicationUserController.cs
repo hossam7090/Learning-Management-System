@@ -36,5 +36,12 @@ namespace Lms.Api.Controllers
             var response = await _mediatR.Send(new GetUserByIdQuery(Id));
             return NewResult(response);
         }
+        [HttpPut(Router.ApplicationUserRouting.Edit)]
+
+        public async Task<IActionResult> Edit([FromBody] EditUserCommand command)
+        {
+            var response = await _mediatR.Send(command);
+            return NewResult(response);
+        }
     }
 }
