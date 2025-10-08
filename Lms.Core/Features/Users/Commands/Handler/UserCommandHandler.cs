@@ -18,6 +18,7 @@ namespace Lms.Core.Features.Users.Commands.Handler
                                        , IRequestHandler<AddUserCommand, Response<string>>
                                        , IRequestHandler<EditUserCommand, Response<string>>
                                        , IRequestHandler<DeleteUserCommand, Response<string>>
+                                       , IRequestHandler<ChangeUserPasswordCommand, Response<string>>
     {
         private readonly UserManager<User> _userManager;
         private readonly IStringLocalizer<SharedResources> _localizer;
@@ -59,6 +60,15 @@ namespace Lms.Core.Features.Users.Commands.Handler
             if(!result.Succeeded) return BadRequest<string>();
             return Deleted<string>();
 
+        }
+
+        public async Task<Response<string>> Handle(ChangeUserPasswordCommand request, CancellationToken cancellationToken)
+        {
+            var user = await _userManager.FindByIdAsync(request.Id.ToString());
+            if (user == null) return NotFound<string>();
+            var result = await _userManager.ChangePasswordAsync(user, request.CurrentPassword, request.NewPassword);
+            if (!result.Succeeded) return BadRequest<string>(result.Errors.FirstOrDefault().Description);
+            return Success((string)_localizer[SharedResourcesKeys.Updated]);
         }
     }
 }

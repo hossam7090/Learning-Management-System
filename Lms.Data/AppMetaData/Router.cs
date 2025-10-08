@@ -32,6 +32,7 @@ namespace Lms.Data.AppMetaData
             public const string Paginated = prefix + "/Paginated";
             public const string GetById = prefix + "/Id";
             public const string Edit = prefix + "/Edit";
+            public const string ChangePassword = prefix + "/Change-Password";
             public const string Delete = prefix + singleRoute;
 
         }
