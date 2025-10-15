@@ -18,15 +18,15 @@ namespace Lms.Infrastructure.Data
         {
             
         }
-        DbSet<User> users {  get; set; }
+        public DbSet<User> users {  get; set; }
         public DbSet<Student> students { get; set; }
-        DbSet<Department> departments { get; set; }
-        DbSet<Subject> subjects { get; set; }
-        DbSet<DepartmetSubject> departmetSubjects {  get; set; }
-        DbSet<StudentSubject> studentSubjects { get; set; }
-        DbSet<Instructor> instructors { get; set; }
-        DbSet<Ins_Subject> ins_Subjects { get; set; }
-
+        public DbSet<Department> departments { get; set; }
+        public DbSet<Subject> subjects { get; set; }
+        public DbSet<DepartmetSubject> departmetSubjects {  get; set; }
+        public DbSet<StudentSubject> studentSubjects { get; set; }
+        public DbSet<Instructor> instructors { get; set; }
+        public DbSet<Ins_Subject> ins_Subjects { get; set; }
+        public DbSet<UserRefreshToken> UserRefreshToken { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

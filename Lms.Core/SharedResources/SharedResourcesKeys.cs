@@ -24,6 +24,8 @@ namespace Lms.Core.Resources
         public const string emailExist = "emailExist";
         public const string userNameExist = "userNameExist";
         public const string Updated = "Updated";
+        public const string UserNameOrPasswordFail = "UserNameOrPasswordFail";
+
 
     }
 }

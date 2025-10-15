@@ -1,9 +1,11 @@
+using Lms.Api.Base;
 using Lms.Core;
 using Lms.Core.MiddelWare;
 using Lms.Data.Entities.Identity;
 using Lms.Infrastructure;
 using Lms.Infrastructure.Data;
 using Lms.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
@@ -18,20 +20,46 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddOpenApi(options =>
+{
+    options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
+});
 
 builder.Services.AddDbContext<ApplicationDbContext>(option =>
         option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
+#region
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(options => {
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT",
+        Description = "JWT Authorization header using the Bearer scheme. Example: 'Bearer {token}'"
+    });
 
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement {{
+        new OpenApiSecurityScheme {
+            Reference = new OpenApiReference {
+                Type = ReferenceType.SecurityScheme,
+                Id = "Bearer"
+            }
+        },
+        Array.Empty<string>()
+    }});
+});
+
+
+#endregion
 
 
 #region Dependency Injection
 builder.Services.AddInfrastructureDependencies()
                 .AddServicesDependencies()
                 .AddCoreDependencies()
-                .AddServiceRegisteration();
+                .AddServiceRegisteration(builder.Configuration);
 #endregion
 
 #region Localization
@@ -93,11 +121,20 @@ app.UseRequestLocalization(options.Value);
 app.UseHttpsRedirection();
 app.UseMiddleware<ErrorHandlerMiddleware>();
 app.UseCors(CORS);
+app.UseAuthentication();
 app.UseAuthorization();
 if (app.Environment.IsDevelopment())
 {
+    
     app.MapOpenApi();            // exposes /openapi/v1.json
-    app.MapScalarApiReference(); // serves Scalar UI (e.g. /scalar/v1)
+    app.MapScalarApiReference(options =>
+    {
+        options.Title = "Hossam LMS Project";
+        options.Theme =  ScalarTheme.BluePlanet;
+        options.DefaultHttpClient =new(ScalarTarget.CSharp,ScalarClient.HttpClient);
+        options.CustomCss = "";
+        options.ShowSidebar = true;
+        }); // serves Scalar UI (e.g. /scalar/v1)
 }
 app.MapControllers();
 

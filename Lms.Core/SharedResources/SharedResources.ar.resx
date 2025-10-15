@@ -165,4 +165,7 @@
   <data name="Updated" xml:space="preserve">
     <value>تم التحديث بنجاح</value>
   </data>
+  <data name="UserNameOrPasswordFail" xml:space="preserve">
+    <value>اسم المستخدم او كلمة المرور خاطئة</value>
+  </data>
 </root>
