@@ -3,12 +3,14 @@ using Lms.Core.Features.Students.Commands.Models;
 using Lms.Core.Features.Students.Queries.Models;
 using Lms.Data.AppMetaData;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lms.Api.Controllers
 {
     [ApiController]
+    [Authorize]
     public class StudentController : AppControllerBase
     {
         public StudentController(IMediator mediatR) : base(mediatR)
