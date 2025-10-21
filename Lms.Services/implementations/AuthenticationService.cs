@@ -20,6 +20,7 @@ namespace Lms.Services.implementations
     {
         #region Feilds
         private readonly JwtSettings _jwtSettings;
+        private readonly ConcurrentDictionary<string,RefreshToken> _userRefreshToken;
         private readonly IRefreshTokenRepository _refreshTokenRepository;
         private readonly UserManager<User> _userManager;
         #endregion
@@ -30,6 +31,7 @@ namespace Lms.Services.implementations
                                      UserManager<User> userManager)
         {
             _jwtSettings = jwtSettings;
+            _userRefreshToken = new ConcurrentDictionary<string,RefreshToken>();
             _refreshTokenRepository = refreshTokenRepository;
             _userManager = userManager;
         }
@@ -84,11 +86,10 @@ namespace Lms.Services.implementations
                 UserName = username,
                 TokenString = GenerateRefreshToken()
             };
+            _userRefreshToken.AddOrUpdate(refreshToken.TokenString, refreshToken, (s, t) => refreshToken);
             return refreshToken;
         }
-        private (JwtSecurityToken, string) GenerateJWTToken(User user)
         {
-            var claims = GetClaims(user);
             var jwtToken = new JwtSecurityToken(
                 _jwtSettings.Issuer,
                 _jwtSettings.Audience,
